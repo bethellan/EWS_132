@@ -45,7 +45,7 @@ function scoreSupO2(v){
 function scoreHR(v){
   if(v===null) return {pts:null,met:false,zone:'none',reason:''};
   if(v<=39) return {pts:null,met:true,zone:'blue',reason:`HR=${v} (MET)`};
-  if(v<=49) return {pts:3,met:false,zone:'red',reason:`HR=${v} (+3)`};
+  if(v<=49) return {pts:2,met:false,zone:'orange',reason:`HR=${v} (+2)`};
   if(v<=89) return {pts:0,met:false,zone:'none',reason:''};
   if(v<=110) return {pts:1,met:false,zone:'yellow',reason:`HR=${v} (+1)`};
   if(v<=129) return {pts:2,met:false,zone:'orange',reason:`HR=${v} (+2)`};
