@@ -67,50 +67,78 @@
       <button id="refClose" class="close-btn">✖</button>
     </div>
     <div class="modal-body">
-      <h4>Scoring Ranges <span class="tag neutral">zone • points</span></h4>
-      <ul class="ref-list">
-        <li><strong>Respiratory Rate</strong>:
-          <span class="tag blue">Blue (MET)</span> &lt;5 or &gt;35 •
-          <span class="tag red">Red +3</span> 5–8, 25–35 •
-          <span class="tag orange">Orange +2</span> 21–24 •
-          <span class="tag yellow">Yellow +1</span> 9–11 •
-          <span class="tag neutral">0</span> 12–20
-        </li>
-        <li><strong>SpO₂</strong>:
-          <span class="tag red">Red +3</span> ≤91 •
-          <span class="tag orange">Orange +2</span> 92–93 •
-          <span class="tag yellow">Yellow +1</span> 94–95 •
-          <span class="tag neutral">0</span> ≥96
-        </li>
-        <li><strong>Supplemental O₂</strong>:
-          <span class="tag orange">Orange +2</span> Yes •
-          <span class="tag neutral">0</span> No
-        </li>
-        <li><strong>Heart Rate</strong>:
-          <span class="tag blue">Blue (MET)</span> ≤39 or ≥140 •
-          <span class="tag red">Red +3</span> 130–139 •
-          <span class="tag orange">Orange +2</span> 40-49, 111–129 •
-          <span class="tag yellow">Yellow +1</span> 90–110 •
-          <span class="tag neutral">0</span> 50–89
-        </li>
-        <li><strong>Systolic BP</strong>:
-          <span class="tag blue">Blue (MET)</span> ≤69 •
-          <span class="tag red">Red +3</span> 70–89, ≥220 •
-          <span class="tag orange">Orange +2</span> 90–99 •
-          <span class="tag yellow">Yellow +1</span> 100–109 •
-          <span class="tag neutral">0</span> 110–219
-        </li>
-        <li><strong>Temperature °C</strong>:
-          <span class="tag orange">Orange +2</span> ≤34.9 or ≥39.0 •
-          <span class="tag yellow">Yellow +1</span> 35.0–35.9, 38.0–38.9 •
-          <span class="tag neutral">0</span> 36.0–37.9
-        </li>
-        <li><strong>AVPU (Alert, Verbal, Pain, Unresponsive, Fitting)</strong>:
-          <span class="tag blue">Blue (MET)</span> U or F •
-          <span class="tag red">Red +3</span> V or P •
-          <span class="tag neutral">0</span> A
-        </li>
-      </ul>
+<h4>Scoring Ranges</h4>
+<table class="ref-table">
+  <thead>
+    <tr>
+      <th>Vital</th>
+      <th class="blue">Blue (MET)</th>
+      <th class="red">Red (+3)</th>
+      <th class="orange">Orange (+2)</th>
+      <th class="yellow">Yellow (+1)</th>
+      <th>0 (Normal)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Resp Rate</strong></td>
+      <td>&lt;5, &gt;35</td>
+      <td>5–8, 25–35</td>
+      <td>21–24</td>
+      <td>9–11</td>
+      <td>12–20</td>
+    </tr>
+    <tr>
+      <td><strong>SpO₂</strong></td>
+      <td></td>
+      <td>≤91</td>
+      <td>92–93</td>
+      <td>94–95</td>
+      <td>≥96</td>
+    </tr>
+    <tr>
+      <td><strong>Sup O₂</strong></td>
+      <td></td>
+      <td></td>
+      <td>Yes</td>
+      <td></td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><strong>Heart Rate</strong></td>
+      <td>≤39, ≥140</td>
+      <td>130–139</td>
+      <td>40–49, 111–129</td>
+      <td>90–110</td>
+      <td>50–89</td>
+    </tr>
+    <tr>
+      <td><strong>Systolic BP</strong></td>
+      <td>≤69</td>
+      <td>70–89, ≥220</td>
+      <td>90–99</td>
+      <td>100–109</td>
+      <td>110–219</td>
+    </tr>
+    <tr>
+      <td><strong>Temp °C</strong></td>
+      <td></td>
+      <td></td>
+      <td>≤34.9, ≥39.0</td>
+      <td>35.0–35.9, 38.0–38.9</td>
+      <td>36.0–37.9</td>
+    </tr>
+    <tr>
+      <td><strong>AVPU</strong><br>(Alert, Verbal, Pain, Unresponsive, Fitting)</td>
+      <td>U, F</td>
+      <td>V, P</td>
+      <td></td>
+      <td></td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+
 
       <h4>About the Toggles</h4>
       <ul class="ref-list">
