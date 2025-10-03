@@ -149,15 +149,24 @@ function computePair(dr, det, strict){
   setRowBand(dr, det, band);
   applyCellHighlights(dr, parts, band);
 
-  // Detail line: keep EWS:0; blank if MET
-  const ews = anyMet ? '' : `EWS: ${total}`;
-  const triggers = parts.filter(p=>p.met || (p.pts!==null && p.pts>0))
-    .map(p=>{
-      const colour = p.zone==='blue'?'Blue':p.zone==='red'?'Red':p.zone==='orange'?'Orange':p.zone==='yellow'?'Yellow':'';
-      return colour ? `${p.reason.replace(' (+',' (').replace(' (MET)','')} ${colour}` : p.reason;
-    });
-  const trigText = triggers.length ? `Triggered by: ${triggers.join(' | ')}` : '';
-  det.firstElementChild.textContent=[ews,trigText].filter(Boolean).join(' • ');
+// Detail line: keep EWS:0; blank if MET
+let ews = anyMet ? '' : `EWS: ${total}`;
+let triggers = parts.filter(p=>p.met || (p.pts!==null && p.pts>0))
+  .map(p=>{
+    const colour = p.zone==='blue'?'Blue':p.zone==='red'?'Red':p.zone==='orange'?'Orange':p.zone==='yellow'?'Yellow':'';
+    // Clean up text
+    let base = p.reason.replace(' (+',' (').replace(' (MET)','');
+    return colour ? `${base} ${colour}` : base;
+  });
+
+let trigText = '';
+if(anyMet && triggers.length){
+  trigText = `MET triggered by: ${triggers.join(' | ')}`;
+} else if(triggers.length){
+  trigText = `Triggered by: ${triggers.join(' | ')}`;
+}
+
+det.firstElementChild.textContent=[ews,trigText].filter(Boolean).join(' • ');
 }
 
 // --- Rows ---
