@@ -1,0 +1,66 @@
+body{font-family:Arial,Helvetica,sans-serif;margin:20px}
+h2{margin:0 0 10px 0}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #ddd;padding:8px;text-align:center;vertical-align:middle}
+th{background:#f2f2f2;position:sticky;top:0;z-index:1}
+td[contenteditable="true"]{background:#fff;cursor:text;min-width:60px}
+.toolbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin:8px 0 12px}
+.toolbar .legend{flex-basis:100%}
+button{padding:6px 12px;cursor:pointer}
+.legend{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;color:#333;margin-top:6px}
+.badge{border-radius:12px;padding:4px 8px;border:1px solid #ccc;background:#fafafa}
+.badge-yellow{background:#fff7cc}
+.badge-orange{background:#ffe0b3}
+.badge-red{background:#ffd6d6}
+.badge-blue{background:#cfe8ff}
+.toggle-label{font-size:13px}
+
+/* Overall band colour: only bed cell (first column) and detail row */
+.row-yellow td:first-child{background:#fff7cc !important}
+.row-orange td:first-child{background:#ffe0b3 !important}
+.row-red td:first-child{background:#ffd6d6 !important}
+.row-blue td:first-child{background:#cfe8ff !important}
+
+.detail-yellow{background:#fff7cc !important}
+.detail-orange{background:#ffe0b3 !important}
+.detail-red{background:#ffd6d6 !important}
+.detail-blue{background:#cfe8ff !important}
+
+/* Per-cell highlights (vital cells) */
+.cell-yellow{background:#fff3b0 !important}
+.cell-orange{background:#ffd8a8 !important}
+.cell-red{background:#ffc9c9 !important}
+.cell-blue{background:#cfe8ff !important}
+
+/* iOS-style toggle */
+.switch{position:relative;display:inline-block;width:48px;height:24px}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#ccc;transition:.2s;border-radius:24px}
+.slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:white;transition:.2s;border-radius:50%}
+input:checked + .slider{background:#4caf50}
+input:checked + .slider:before{transform:translateX(24px)}
+
+/* Tags in Reference modal */
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;border:1px solid #bbb;margin:0 2px 2px 0;background:#fafafa;font-size:12px}
+.tag.yellow{background:#fff7cc}
+.tag.orange{background:#ffe0b3}
+.tag.red{background:#ffd6d6}
+.tag.blue{background:#cfe8ff}
+.tag.neutral{background:#eee}
+
+/* Print styles */
+.print-only{display:none}
+@media print{
+  body{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .toolbar, .remove-col, td.remove-col, .modal{display:none !important}
+  button{display:none !important}
+  .print-only{display:block !important; margin-top:12px; font-size:12px; color:#333; text-align:right}
+  th{position:static}
+}
+
+/* Modal */
+.modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.4)}
+.modal-content{background:#fff;margin:5% auto;padding:16px;border:1px solid #888;width:min(900px,95%);max-height:85vh;overflow:auto;border-radius:8px}
+.modal-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;margin-bottom:8px}
+.close-btn{cursor:pointer;padding:6px 10px}
+.ref-list{margin-top:6px}

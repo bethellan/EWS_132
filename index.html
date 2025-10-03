@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EWS Bed Space Table – CCDHB v12.3</title>
+<link rel="stylesheet" href="style.css?v=12.3">
+</head>
+<body>
+
+<h2>ICU / Ward Early Warning Score Table (CCDHB)</h2>
+
+<div class="toolbar">
+  <div class="left">
+    <label class="switch">
+      <input type="checkbox" id="strictToggle" checked>
+      <span class="slider"></span>
+    </label>
+    <span class="toggle-label"><strong>Require full row to score</strong></span>
+
+    <label class="switch" style="margin-left:18px;">
+      <input type="checkbox" id="cellBandToggle">
+      <span class="slider"></span>
+    </label>
+    <span class="toggle-label">Cell colour follows <em>overall band</em></span>
+  </div>
+
+  <div class="right">
+    <button id="addRowBtn">➕ Add Patient Row</button>
+    <button id="clearBtn">Clear Table</button>
+    <button id="printBtn">🖨️ Print Table</button>
+    <button id="refBtn">📖 Reference</button>
+  </div>
+
+  <div class="legend">
+    <span class="badge badge-yellow">Yellow (1–5 or any vital in yellow)</span>
+    <span class="badge badge-orange">Orange (6–7 or any vital in orange)</span>
+    <span class="badge badge-red">Red (8–9 or any vital in red)</span>
+    <span class="badge badge-blue">Blue (10+ or any MET)</span>
+  </div>
+</div>
+
+<table id="ewsTable">
+  <thead>
+    <tr>
+      <th>Bed</th>
+      <th>Resp Rate</th>
+      <th>SpO₂</th>
+      <th>Sup O₂</th>
+      <th>HR</th>
+      <th>Systolic BP</th>
+      <th>Temp °C</th>
+      <th>AVPU</th>
+      <th class="remove-col">Remove</th>
+    </tr>
+  </thead>
+  <tbody id="ewsBody"></tbody>
+</table>
+
+<div id="printFooter" class="print-only"></div>
+
+<!-- Reference Modal -->
+<div id="refModal" class="modal" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>CCDHB EWS Reference</h3>
+      <button id="refClose" class="close-btn">✖</button>
+    </div>
+    <div class="modal-body">
+      <h4>Scoring Ranges <span class="tag neutral">zone • points</span></h4>
+      <ul class="ref-list">
+        <li><strong>Respiratory Rate</strong>:
+          <span class="tag blue">Blue (MET)</span> &lt;5 or &gt;35 •
+          <span class="tag red">Red +3</span> 5–8, 25–35 •
+          <span class="tag orange">Orange +2</span> 21–24 •
+          <span class="tag yellow">Yellow +1</span> 9–11 •
+          <span class="tag neutral">0</span> 12–20
+        </li>
+        <li><strong>SpO₂</strong>:
+          <span class="tag red">Red +3</span> ≤91 •
+          <span class="tag orange">Orange +2</span> 92–93 •
+          <span class="tag yellow">Yellow +1</span> 94–95 •
+          <span class="tag neutral">0</span> ≥96
+        </li>
+        <li><strong>Supplemental O₂</strong>:
+          <span class="tag orange">Orange +2</span> Yes •
+          <span class="tag neutral">0</span> No
+        </li>
+        <li><strong>Heart Rate</strong>:
+          <span class="tag blue">Blue (MET)</span> ≤39 or ≥140 •
+          <span class="tag red">Red +3</span> 40–49, 130–139 •
+          <span class="tag orange">Orange +2</span> 111–129 •
+          <span class="tag yellow">Yellow +1</span> 90–110 •
+          <span class="tag neutral">0</span> 50–89
+        </li>
+        <li><strong>Systolic BP</strong>:
+          <span class="tag blue">Blue (MET)</span> ≤69 •
+          <span class="tag red">Red +3</span> 70–89, ≥220 •
+          <span class="tag orange">Orange +2</span> 90–99 •
+          <span class="tag yellow">Yellow +1</span> 100–109 •
+          <span class="tag neutral">0</span> 110–219
+        </li>
+        <li><strong>Temperature °C</strong>:
+          <span class="tag orange">Orange +2</span> ≤34.9 or ≥39.0 •
+          <span class="tag yellow">Yellow +1</span> 35.0–35.9, 38.0–38.9 •
+          <span class="tag neutral">0</span> 36.0–37.9
+        </li>
+        <li><strong>AVPU (Alert, Verbal, Pain, Unresponsive, Fitting)</strong>:
+          <span class="tag blue">Blue (MET)</span> U or F •
+          <span class="tag red">Red +3</span> V or P •
+          <span class="tag neutral">0</span> A
+        </li>
+      </ul>
+
+      <h4>About the Toggles</h4>
+      <ul class="ref-list">
+        <li><strong>Require full row to score</strong>: Score only when <em>all fields</em> are entered. Exception: if any single MET criterion is present, it will still trigger Blue.</li>
+        <li><strong>Cell colour follows overall band</strong>: When ON, all vital cells adopt the overall escalation colour (Blue &gt; Red &gt; Orange &gt; Yellow). When OFF, each vital shows its own colour.</li>
+      </ul>
+
+      <h4>Mandatory Actions (Orange & Red details)</h4>
+      <ul class="ref-list">
+        <li><span class="tag orange">Orange</span> House officer review <strong>&lt;60 min</strong> • Inform nurse in charge • Refer PAR nurse <strong>#6785</strong> • Increase frequency of vital signs • <strong>Document plan</strong> (intervention, escalation & review timeframe)</li>
+        <li><span class="tag red">Red</span> Registrar review <strong>&lt;20 min</strong> • <strong>Suggest ICU referral</strong></li>
+        <li><span class="tag blue">Blue (MET)</span> Dial <strong>777</strong> • State MET • Give location • Support ABC</li>
+        <li><span class="tag yellow">Yellow</span> Manage pain/fever/distress • Increase frequency of observations</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="script.js?v=12.3"></script>
+</body>
+</html>
