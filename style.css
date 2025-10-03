@@ -64,3 +64,19 @@ input:checked + .slider:before{transform:translateX(24px)}
 .modal-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;margin-bottom:8px}
 .close-btn{cursor:pointer;padding:6px 10px}
 .ref-list{margin-top:6px}
+
+.ref-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.ref-table th, .ref-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+}
+.ref-table th.blue, .ref-table td.blue { background: #cfe8ff; }
+.ref-table th.red, .ref-table td.red { background: #ffd6d6; }
+.ref-table th.orange, .ref-table td.orange { background: #ffe0b3; }
+.ref-table th.yellow, .ref-table td.yellow { background: #fff7cc; }
